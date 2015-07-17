@@ -27,10 +27,10 @@ if(bio.hasOwnProperty("skills") && bio.skills.length){
 }
 
 $('#header').append(insert(HTMLheaderName, bio.name));
-$('#header').append(insert(HTMLheaderRole, bio.role));
+$('#name').append(insert(HTMLheaderRole, bio.role));
 
 
-var work = [
+var work = {"contents":[
     {
         "name": "Newline",
         "position": "Lead Developer",
@@ -52,39 +52,47 @@ var work = [
         "dates": "2012",
         "description": "Geospatial Imaging using image processing, stitching, normalization"
     }
-];
-function display_work() {
-    if (work.length) {
+]};
+work.display = function () {
+    for (i in work.contents) {
         $('#workExperience').append(HTMLworkStart);
-        for (i in work) {
-            $('.work-entry:last').append(insert(HTMLworkEmployer, work[i].name));
-            $('.work-entry:last').append(insert(HTMLworkTitle, work[i].position));
-            $('.work-entry:last').append(insert(HTMLworkDates, work[i].dates));
-            $('.work-entry:last').append(insert(HTMLworkLocation, work[i].city));
-            $('.work-entry:last').append(insert(HTMLworkDescription, work[i].description));
+        $('.work-entry:last').append(insert(HTMLworkEmployer, work.contents[i].name));
+        $('.work-entry:last').append(insert(HTMLworkTitle, work.contents[i].position));
+        $('.work-entry:last').append(insert(HTMLworkDates, work.contents[i].dates));
+        $('.work-entry:last').append(insert(HTMLworkLocation, work.contents[i].city));
+        $('.work-entry:last').append(insert(HTMLworkDescription, work.contents[i].description));
 
-        }
     }
-}
-display_work();
+};
+work.display();
 
-var projects = [
+var projects = {"contents":[
     {
         "title": "DNASkittle.com",
         "dates": "2013-2014",
-        "description": "Genome Visualization and exploration web application",
+        "description": "Genome Visualization and exploration web application"
     },
     {
         "title": "Pipe Scan",
         "dates": "2015",
-        "description": "Data analysis for Hall Effect oil pipe scanners",
+        "description": "Data analysis for Hall Effect oil pipe scanners"
     },
     {
         "title": "Animal Disease Spread Model",
         "dates": "2014-2015",
-        "description": "USDA Simulation to plan for livestock disease outbreak prevention",
+        "description": "USDA Simulation to plan for livestock disease outbreak prevention"
     }
-];
+]};
+projects.display = function(){
+    for (i in projects.contents) {
+        $('#projects').append(HTMLprojectStart);
+        $('.project-entry:last').append(insert(HTMLprojectTitle, projects.contents[i].title));
+        $('.project-entry:last').append(insert(HTMLprojectDates, projects.contents[i].dates));
+        $('.project-entry:last').append(insert(HTMLprojectDescription, projects.contents[i].description));
+        //$('.project-entry:last').append(insert(HTMLprojectImage, projects.contents[i].));
+    }
+};
+projects.display();
 
 var education = {
     "schools": [
@@ -110,3 +118,5 @@ var education = {
 };
 //$('#education').append(HTMLschoolStart);
 //$('#education').append(insert(HTMLschoolName, education.name));
+
+$('#map-div').append(googleMap)

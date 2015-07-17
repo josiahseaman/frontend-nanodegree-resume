@@ -13,7 +13,7 @@
  replace the %data% placeholder text you see in them.
  */
 var HTMLheaderName = '<h1 id="name">%data%</h1>';
-var HTMLheaderRole = '<span>%data%</span><hr/>';
+var HTMLheaderRole = '<span class="role">%data%</span><hr/>';
 
 var HTMLcontactGeneric = '<li class="flex-item"><span class="orange-text">%contact%</span><span class="white-text">%data%</span></li>';
 var HTMLmobile = '<li class="flex-item"><span class="orange-text">mobile</span><span class="white-text">%data%</span></li>';
@@ -62,17 +62,17 @@ var googleMap = '<div id="map"></div>';
 /*
  The International Name challenge in Lesson 2 where you'll create a function that will need this helper code to run. Don't delete! It hooks up your code to the button you'll be appending.
  */
-function inName() {
-    var full_name = $('#name').text();
-    var first = toTitleCase(full_name.split(" ")[0]);
-    var last = full_name.split(" ").pop().toUpperCase()
+function inName(full_name) {
+    var full_name = full_name.split(" ");
+    var first = toTitleCase(full_name[0]);
+    var last = full_name.pop().toUpperCase();
     return first + " " + last;
 }
 
 $(document).ready(function () {
-    $('#main').append(internationalizeButton)
+    $('#main').append(internationalizeButton);
     $('button').click(function () {
-        var iName = inName() || function () { };
+        var iName = inName($('#name').text()) || function () { };
         $('#name').html(iName);
     });
 });
@@ -244,7 +244,7 @@ function initializeMap() {
  */
 
 // Calls the initializeMap() function when the page loads
-//window.addEventListener('load', initializeMap);
+window.addEventListener('load', initializeMap);
 
 // Vanilla JS way to listen for resizing of the window
 // and adjust map bounds
