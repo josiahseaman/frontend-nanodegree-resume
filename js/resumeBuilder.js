@@ -19,16 +19,25 @@ var bio = {
         "location": "Colorado Springs, CO",
     }
 };
-if(bio.hasOwnProperty("skills") && bio.skills.length){
-    $('#header').append(HTMLskillsStart);
-    for(var i in bio.skills) {
-        $('#skills').append(insert(HTMLskills, bio.skills[i]));
+bio.display = function() {
+    $('#header').prepend(insert(HTMLheaderName, bio.name));
+    $('#name').append(insert(HTMLheaderRole, bio.role));
+
+
+    $('#topContacts').append(insert(HTMLemail, bio.contacts.email));
+    $('#topContacts').append(insert(HTMLmobile, bio.contacts.mobile));
+    $('#topContacts').append(insert(HTMLgithub, bio.contacts.github));
+    $('#topContacts').append(insert(HTMLlocation, bio.contacts.location));
+
+
+    if(bio.hasOwnProperty("skills") && bio.skills.length){
+        $('#header').append(HTMLskillsStart);
+        for(var i in bio.skills) {
+            $('#skills').append(insert(HTMLskills, bio.skills[i]));
+        }
     }
-}
-
-$('#header').append(insert(HTMLheaderName, bio.name));
-$('#name').append(insert(HTMLheaderRole, bio.role));
-
+};
+bio.display();
 
 var work = {"jobs":[
     {
