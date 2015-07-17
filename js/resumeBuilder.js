@@ -50,7 +50,7 @@ var work = {"jobs":[
     {
         "name": "Shrinking World Solutions",
         "position": "Senior Developer",
-        "location": "Windsor, CO",
+        "location": "Windsor, Colorado",
         "dates": "2014",
         "description": "Critical Oil field pipe scanning quality assurance using multivariate analysis"
     },
