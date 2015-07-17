@@ -10,13 +10,13 @@ function insert(template, data){
 var bio = {
     "name": "Josiah Seaman",
     "role": "Full Stack Developer",
-    "city": "Colorado Springs",
     "age": 30,
     "skills": ["CS", "Javascript", "Python", "GMing"],
     "contacts": {
         "mobile": "970-381-8860",
         "email": "josiah.seaman@gmail.com",
-        "github": "josiahseaman"
+        "github": "josiahseaman",
+        "location": "Colorado Springs, CO",
     }
 };
 if(bio.hasOwnProperty("skills") && bio.skills.length){
@@ -30,43 +30,43 @@ $('#header').append(insert(HTMLheaderName, bio.name));
 $('#name').append(insert(HTMLheaderRole, bio.role));
 
 
-var work = {"contents":[
+var work = {"jobs":[
     {
         "name": "Newline",
         "position": "Lead Developer",
-        "city": "Colorado Springs",
+        "location": "Colorado Springs, CO",
         "dates": "2013 - present",
         "description": "Software consulting company for diverse clients in Web Applications"
     },
     {
         "name": "Shrinking World Solutions",
         "position": "Senior Developer",
-        "city": "Windsor, CO",
+        "location": "Windsor, CO",
         "dates": "2014",
         "description": "Critical Oil field pipe scanning quality assurance using multivariate analysis"
     },
     {
         "name": "Digital Globe",
         "position": "Java Quality Assurance",
-        "city": "Longmont, CO",
+        "location": "Longmont, CO",
         "dates": "2012",
         "description": "Geospatial Imaging using image processing, stitching, normalization"
     }
 ]};
 work.display = function () {
-    for (i in work.contents) {
+    for (i in work.jobs) {
         $('#workExperience').append(HTMLworkStart);
-        $('.work-entry:last').append(insert(HTMLworkEmployer, work.contents[i].name));
-        $('.work-entry:last').append(insert(HTMLworkTitle, work.contents[i].position));
-        $('.work-entry:last').append(insert(HTMLworkDates, work.contents[i].dates));
-        $('.work-entry:last').append(insert(HTMLworkLocation, work.contents[i].city));
-        $('.work-entry:last').append(insert(HTMLworkDescription, work.contents[i].description));
+        $('.work-entry:last').append(insert(HTMLworkEmployer, work.jobs[i].name));
+        $('.work-entry:last').append(insert(HTMLworkTitle, work.jobs[i].position));
+        $('.work-entry:last').append(insert(HTMLworkDates, work.jobs[i].dates));
+        $('.work-entry:last').append(insert(HTMLworkLocation, work.jobs[i].location));
+        $('.work-entry:last').append(insert(HTMLworkDescription, work.jobs[i].description));
 
     }
 };
 work.display();
 
-var projects = {"contents":[
+var projects = {"projects":[
     {
         "title": "DNASkittle.com",
         "dates": "2013-2014",
@@ -84,12 +84,12 @@ var projects = {"contents":[
     }
 ]};
 projects.display = function(){
-    for (i in projects.contents) {
+    for (i in projects.projects) {
         $('#projects').append(HTMLprojectStart);
-        $('.project-entry:last').append(insert(HTMLprojectTitle, projects.contents[i].title));
-        $('.project-entry:last').append(insert(HTMLprojectDates, projects.contents[i].dates));
-        $('.project-entry:last').append(insert(HTMLprojectDescription, projects.contents[i].description));
-        //$('.project-entry:last').append(insert(HTMLprojectImage, projects.contents[i].));
+        $('.project-entry:last').append(insert(HTMLprojectTitle, projects.projects[i].title));
+        $('.project-entry:last').append(insert(HTMLprojectDates, projects.projects[i].dates));
+        $('.project-entry:last').append(insert(HTMLprojectDescription, projects.projects[i].description));
+        //$('.project-entry:last').append(insert(HTMLprojectImage, projects.projects[i].));
     }
 };
 projects.display();
@@ -98,25 +98,33 @@ var education = {
     "schools": [
         {
             "name": "University of Colorado Anscutz Medical Campus",
-            "level": "PhD Program",
-            "degree": "Computational Biology",
-            "city": "Denver, CO"
+            "degree": "PhD Program",
+            "major": "Computational Biology",
+            "location": "Denver, CO"
         },
         {
             "name": "Colorado State University",
-            "level": "Bachelors of Science",
-            "degree": "Computer Science",
-            "city": "Fort Collins, CO"
+            "degree": "Bachelors of Science",
+            "major": "Computer Science",
+            "location": "Fort Collins, CO"
         }
     ],
-    "Online Courses": [
+    "onlineCourses": [
         {
-            "name": "Udacity",
-            "degree": "Front End Web Developer Nano-degree"
+            "school": "Udacity",
+            "title": "Front End Web Developer Nano-degree"
         }
     ]
 };
-//$('#education').append(HTMLschoolStart);
-//$('#education').append(insert(HTMLschoolName, education.name));
+education.display = function() {
+    for (i in education.schools) {
+        $('#education').append(HTMLschoolStart);
+        $('.education-entry:last').append(insert(HTMLschoolName, education.schools[i].name));
+        $('.education-entry:last').append(insert(HTMLschoolDegree, education.schools[i].degree));
+        $('.education-entry:last').append(insert(HTMLschoolLocation, education.schools[i].location));
+        $('.education-entry:last').append(insert(HTMLschoolMajor, education.schools[i].major));
+    }
+};
+education.display()
 
 $('#map-div').append(googleMap)
