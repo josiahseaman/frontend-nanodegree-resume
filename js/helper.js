@@ -62,13 +62,25 @@ var googleMap = '<div id="map"></div>';
 /*
  The International Name challenge in Lesson 2 where you'll create a function that will need this helper code to run. Don't delete! It hooks up your code to the button you'll be appending.
  */
+function inName() {
+    var full_name = $('#name').text();
+    var first = toTitleCase(full_name.split(" ")[0]);
+    var last = full_name.split(" ").pop().toUpperCase()
+    return first + " " + last;
+}
+
 $(document).ready(function () {
+    $('#main').append(internationalizeButton)
     $('button').click(function () {
-        var iName = inName() || function () {
-            };
+        var iName = inName() || function () { };
         $('#name').html(iName);
     });
 });
+
+function toTitleCase(str)
+{
+    return str.replace(/\w+/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
 
 /*
  The next few lines about clicks are for the Collecting Click Locations quiz in Lesson 2.

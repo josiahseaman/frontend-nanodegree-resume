@@ -26,8 +26,8 @@ if(bio.hasOwnProperty("skills") && bio.skills.length){
     }
 }
 
-//$('#header').append(insert(HTMLheaderName, bio.name));
-//$('#header').append(insert(HTMLheaderRole, bio.role));
+$('#header').append(insert(HTMLheaderName, bio.name));
+$('#header').append(insert(HTMLheaderRole, bio.role));
 
 
 var work = [
@@ -55,7 +55,7 @@ var work = [
 ];
 function display_work() {
     if (work.length) {
-        $('#workExperience').append(HTMLworkStart)
+        $('#workExperience').append(HTMLworkStart);
         for (i in work) {
             $('.work-entry:last').append(insert(HTMLworkEmployer, work[i].name));
             $('.work-entry:last').append(insert(HTMLworkTitle, work[i].position));
