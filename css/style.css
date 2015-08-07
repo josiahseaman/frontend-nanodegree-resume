@@ -114,6 +114,10 @@ a {
     background-color: #f5ae23;
 }
 
+.orange:hover{
+    color: black;
+}
+
 .orange-text {
     color: #f5ae23;
 }
@@ -172,6 +176,10 @@ span {
 
 #lets-connect {
     text-align: center;
+}
+#lets-connect:hover {
+    cursor: pointer;
+    cursor: hand;
 }
 
 /* Media queries to handle various device widths */

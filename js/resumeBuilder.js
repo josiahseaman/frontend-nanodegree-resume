@@ -11,7 +11,8 @@ var bio = {
     "name": "Josiah Seaman",
     "role": "Full Stack Developer",
     "age": 30,
-    "skills": ["CS", "Javascript", "Python", "GMing"],
+    "skills": ["Python", "Java", "C++", "CSS", "Javascript", "Algorithms", "Data Visualization", "GMing"],
+    "biopic": "https://dl.dropboxusercontent.com/u/31345898/josiah_seaman_profile_head.jpg",
     "contacts": {
         "mobile": "970-381-8860",
         "email": "josiah.seaman@gmail.com",
@@ -21,13 +22,15 @@ var bio = {
 };
 bio.display = function() {
     $('#header').prepend(insert(HTMLheaderName, bio.name));
+    $('#header').prepend(insert(HTMLbioPic, bio.biopic));
+
     $('#name').append(insert(HTMLheaderRole, bio.role));
 
-
-    $('#topContacts').append(insert(HTMLemail, bio.contacts.email));
-    $('#topContacts').append(insert(HTMLmobile, bio.contacts.mobile));
-    $('#topContacts').append(insert(HTMLgithub, bio.contacts.github));
-    $('#topContacts').append(insert(HTMLlocation, bio.contacts.location));
+    var topContacts = $('#topContacts');
+    topContacts.append(insert(HTMLemail, bio.contacts.email));
+    topContacts.append(insert(HTMLmobile, bio.contacts.mobile));
+    topContacts.append(insert(HTMLgithub, bio.contacts.github));
+    topContacts.append(insert(HTMLlocation, bio.contacts.location));
 
 
     if(bio.hasOwnProperty("skills") && bio.skills.length){
@@ -65,11 +68,12 @@ var work = {"jobs":[
 work.display = function () {
     for (i in work.jobs) {
         $('#workExperience').append(HTMLworkStart);
-        $('.work-entry:last').append(insert(HTMLworkEmployer, work.jobs[i].name));
-        $('.work-entry:last').append(insert(HTMLworkTitle, work.jobs[i].position));
-        $('.work-entry:last').append(insert(HTMLworkDates, work.jobs[i].dates));
-        $('.work-entry:last').append(insert(HTMLworkLocation, work.jobs[i].location));
-        $('.work-entry:last').append(insert(HTMLworkDescription, work.jobs[i].description));
+        var $last_entry = $('.work-entry:last');
+        $last_entry.append(insert(HTMLworkEmployer, work.jobs[i].name));
+        $last_entry.append(insert(HTMLworkTitle, work.jobs[i].position));
+        $last_entry.append(insert(HTMLworkDates, work.jobs[i].dates));
+        $last_entry.append(insert(HTMLworkLocation, work.jobs[i].location));
+        $last_entry.append(insert(HTMLworkDescription, work.jobs[i].description));
 
     }
 };
