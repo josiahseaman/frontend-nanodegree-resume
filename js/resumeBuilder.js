@@ -93,10 +93,16 @@ var projects = {"projects":[
         "images": []
     },
     {
+        "title": "Autoponics",
+        "dates": "2013-2014",
+        "description": "Circuit, case, and software design for Everyday Automation Aquaponics system",
+        "images": ['images/Autoponics_hardware_small.png', 'images/autoponics_circuit_small.png', 'images/food_in_a_box_small.jpg']
+    },
+    {
         "title": "Animal Disease Spread Model",
-        "dates": "2014-2015",
+        "dates": "2013-2015",
         "description": "USDA Simulation to plan for livestock disease outbreak prevention",
-        "images": ['images/adsm.jpg']
+        "images": ['images/adsm.jpg', 'images/adsm_pop_small.png']
     }
 ]};
 projects.display = function(){
