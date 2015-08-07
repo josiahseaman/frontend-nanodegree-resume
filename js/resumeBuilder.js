@@ -42,7 +42,6 @@ bio.display = function() {
         }
     }
 };
-bio.display();
 
 var work = {"jobs":[
     {
@@ -79,14 +78,13 @@ work.display = function () {
 
     }
 };
-work.display();
 
 var projects = {"projects":[
     {
         "title": "DNASkittle.com",
         "dates": "2013-2014",
         "description": "Genome Visualization and exploration web application",
-        "images": []
+        "images": ['images/DNASkittle_small.png']
     },
     {
         "title": "Pipe Scan",
@@ -98,20 +96,21 @@ var projects = {"projects":[
         "title": "Animal Disease Spread Model",
         "dates": "2014-2015",
         "description": "USDA Simulation to plan for livestock disease outbreak prevention",
-        "images": []
+        "images": ['images/adsm.jpg']
     }
 ]};
 projects.display = function(){
-    for (i in projects.projects) {
+    for (var i in projects.projects) {
         $('#projects').append(HTMLprojectStart);
         var lastEntry = $('.project-entry:last');
         lastEntry.append(personalize(HTMLprojectTitle, projects.projects[i].title));
         lastEntry.append(personalize(HTMLprojectDates, projects.projects[i].dates));
         lastEntry.append(personalize(HTMLprojectDescription, projects.projects[i].description));
-        //$('.project-entry:last').append(personalize(HTMLprojectImage, projects.projects[i].));
+        for(var x in projects.projects[i].images){
+            lastEntry.append(personalize(HTMLprojectImage, projects.projects[i].images[x]));
+        }
     }
 };
-projects.display();
 
 var education = {
     "schools": [
@@ -136,7 +135,7 @@ var education = {
     ]
 };
 education.display = function() {
-    for (i in education.schools) {
+    for (var i in education.schools) {
         $('#education').append(HTMLschoolStart);
         var lastEntry = $('.education-entry:last');
         lastEntry.append(personalize(HTMLschoolName, education.schools[i].name));
@@ -145,6 +144,14 @@ education.display = function() {
         lastEntry.append(personalize(HTMLschoolMajor, education.schools[i].major));
     }
 };
-education.display()
 
-$('#map-div').append(googleMap)
+function build(){
+
+    bio.display();
+    work.display();
+    projects.display();
+    education.display();
+
+    $('#map-div').append(googleMap)
+}
+build();
