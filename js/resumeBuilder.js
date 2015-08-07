@@ -2,8 +2,8 @@
 This is empty on purpose! Your code to build the resume will go here.
  */
 
-function insert(template, data){
-    return template.replace('%data%', data)
+function personalize(template, data){
+    return template.replace(/%data%/g, data)
 }
 
 //Further requirements: https://www.udacity.com/course/viewer#!/c-ud804-nd/l-1930528550/e-1935058561/m-2948908664
@@ -17,26 +17,28 @@ var bio = {
         "mobile": "970-381-8860",
         "email": "josiah.seaman@gmail.com",
         "github": "josiahseaman",
-        "location": "Colorado Springs, CO",
+        "location": "Colorado Springs, CO"
     }
 };
 bio.display = function() {
-    $('#header').prepend(insert(HTMLheaderName, bio.name));
-    $('#header').prepend(insert(HTMLbioPic, bio.biopic));
+    $('#header').prepend(personalize(HTMLheaderName, bio.name));
+    $('#header').prepend(personalize(HTMLbioPic, bio.biopic));
 
-    $('#name').append(insert(HTMLheaderRole, bio.role));
+    $('#name').append(personalize(HTMLheaderRole, bio.role));
 
     var topContacts = $('#topContacts');
-    topContacts.append(insert(HTMLemail, bio.contacts.email));
-    topContacts.append(insert(HTMLmobile, bio.contacts.mobile));
-    topContacts.append(insert(HTMLgithub, bio.contacts.github));
-    topContacts.append(insert(HTMLlocation, bio.contacts.location));
+    topContacts.append(personalize(HTMLemail, bio.contacts.email));
+    topContacts.append(personalize(HTMLmobile, bio.contacts.mobile));
+    topContacts.append(personalize(HTMLgithub, bio.contacts.github));
+    topContacts.append(personalize(HTMLlocation, bio.contacts.location));
+    var content = $('#topContacts').children().clone();
+    $('#footerContacts').append(content);
 
 
     if(bio.hasOwnProperty("skills") && bio.skills.length){
         $('#header').append(HTMLskillsStart);
         for(var i in bio.skills) {
-            $('#skills').append(insert(HTMLskills, bio.skills[i]));
+            $('#skills').append(personalize(HTMLskills, bio.skills[i]));
         }
     }
 };
@@ -44,36 +46,36 @@ bio.display();
 
 var work = {"jobs":[
     {
-        "name": "Newline",
-        "position": "Lead Developer",
+        "employer": "Newline",
+        "title": "Lead Developer",
         "location": "Colorado Springs, CO",
         "dates": "2013 - present",
         "description": "Software consulting company for diverse clients in Web Applications"
     },
     {
-        "name": "Shrinking World Solutions",
-        "position": "Senior Developer",
+        "employer": "Shrinking World Solutions",
+        "title": "Senior Developer",
         "location": "Windsor, Colorado",
         "dates": "2014",
         "description": "Critical Oil field pipe scanning quality assurance using multivariate analysis"
     },
     {
-        "name": "Digital Globe",
-        "position": "Java Quality Assurance",
+        "employer": "Digital Globe",
+        "title": "Java Quality Assurance",
         "location": "Longmont, CO",
         "dates": "2012",
         "description": "Geospatial Imaging using image processing, stitching, normalization"
     }
 ]};
 work.display = function () {
-    for (i in work.jobs) {
+    for (var i in work.jobs) {
         $('#workExperience').append(HTMLworkStart);
         var $last_entry = $('.work-entry:last');
-        $last_entry.append(insert(HTMLworkEmployer, work.jobs[i].name));
-        $last_entry.append(insert(HTMLworkTitle, work.jobs[i].position));
-        $last_entry.append(insert(HTMLworkDates, work.jobs[i].dates));
-        $last_entry.append(insert(HTMLworkLocation, work.jobs[i].location));
-        $last_entry.append(insert(HTMLworkDescription, work.jobs[i].description));
+        $last_entry.append(personalize(HTMLworkEmployer, work.jobs[i].employer));
+        $last_entry.append(personalize(HTMLworkTitle, work.jobs[i].title));
+        $last_entry.append(personalize(HTMLworkDates, work.jobs[i].dates));
+        $last_entry.append(personalize(HTMLworkLocation, work.jobs[i].location));
+        $last_entry.append(personalize(HTMLworkDescription, work.jobs[i].description));
 
     }
 };
@@ -83,26 +85,30 @@ var projects = {"projects":[
     {
         "title": "DNASkittle.com",
         "dates": "2013-2014",
-        "description": "Genome Visualization and exploration web application"
+        "description": "Genome Visualization and exploration web application",
+        "images": []
     },
     {
         "title": "Pipe Scan",
         "dates": "2015",
-        "description": "Data analysis for Hall Effect oil pipe scanners"
+        "description": "Data analysis for Hall Effect oil pipe scanners",
+        "images": []
     },
     {
         "title": "Animal Disease Spread Model",
         "dates": "2014-2015",
-        "description": "USDA Simulation to plan for livestock disease outbreak prevention"
+        "description": "USDA Simulation to plan for livestock disease outbreak prevention",
+        "images": []
     }
 ]};
 projects.display = function(){
     for (i in projects.projects) {
         $('#projects').append(HTMLprojectStart);
-        $('.project-entry:last').append(insert(HTMLprojectTitle, projects.projects[i].title));
-        $('.project-entry:last').append(insert(HTMLprojectDates, projects.projects[i].dates));
-        $('.project-entry:last').append(insert(HTMLprojectDescription, projects.projects[i].description));
-        //$('.project-entry:last').append(insert(HTMLprojectImage, projects.projects[i].));
+        var lastEntry = $('.project-entry:last');
+        lastEntry.append(personalize(HTMLprojectTitle, projects.projects[i].title));
+        lastEntry.append(personalize(HTMLprojectDates, projects.projects[i].dates));
+        lastEntry.append(personalize(HTMLprojectDescription, projects.projects[i].description));
+        //$('.project-entry:last').append(personalize(HTMLprojectImage, projects.projects[i].));
     }
 };
 projects.display();
@@ -132,10 +138,11 @@ var education = {
 education.display = function() {
     for (i in education.schools) {
         $('#education').append(HTMLschoolStart);
-        $('.education-entry:last').append(insert(HTMLschoolName, education.schools[i].name));
-        $('.education-entry:last').append(insert(HTMLschoolDegree, education.schools[i].degree));
-        $('.education-entry:last').append(insert(HTMLschoolLocation, education.schools[i].location));
-        $('.education-entry:last').append(insert(HTMLschoolMajor, education.schools[i].major));
+        var lastEntry = $('.education-entry:last');
+        lastEntry.append(personalize(HTMLschoolName, education.schools[i].name));
+        lastEntry.append(personalize(HTMLschoolDegree, education.schools[i].degree));
+        lastEntry.append(personalize(HTMLschoolLocation, education.schools[i].location));
+        lastEntry.append(personalize(HTMLschoolMajor, education.schools[i].major));
     }
 };
 education.display()

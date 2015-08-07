@@ -116,6 +116,8 @@ a {
 
 .orange:hover{
     color: black;
+    cursor: pointer;
+    /*cursor: hand;*/
 }
 
 .orange-text {
@@ -125,6 +127,7 @@ a {
 .white-text {
     font-weight: bold;
     color: #fff;
+    display: inline;
 }
 
 .gray {
@@ -176,10 +179,6 @@ span {
 
 #lets-connect {
     text-align: center;
-}
-#lets-connect:hover {
-    cursor: pointer;
-    cursor: hand;
 }
 
 /* Media queries to handle various device widths */
