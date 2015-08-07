@@ -11,7 +11,7 @@ var bio = {
     "name": "Josiah Seaman",
     "role": "Full Stack Developer",
     "age": 30,
-    "skills": ["Python", "Java", "C++", "CSS", "Javascript", "Algorithms", "Data Visualization", "GMing"],
+    "skills": ["Software Development", "Project Management", "Python, Java, C++, CSS, Javascript", "Algorithms", "Data Visualization", "GMing"],
     "biopic": "https://dl.dropboxusercontent.com/u/31345898/josiah_seaman_profile_head.jpg",
     "contacts": {
         "mobile": "970-381-8860",
